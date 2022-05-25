@@ -6,14 +6,9 @@ import { GlobaContext } from '../context/Provider'
 
 const AppNavContainer = () => {
   const state = useContext(GlobaContext)
-  console.log('🚀 ~ file: index.js ~ line 10 ~ AppNavContainer ~ state', state)
   const {
     authState: { isLoggedIn },
   } = useContext(GlobaContext)
-  console.log(
-    '🚀 ~ file: index.js ~ line 11 ~ AppNavContainer ~ isLoggedIn',
-    isLoggedIn
-  )
 
   return (
     <NavigationContainer>

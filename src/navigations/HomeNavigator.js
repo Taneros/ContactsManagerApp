@@ -1,14 +1,13 @@
-import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 import {
   CONTACT_DETAIL,
   CONTACT_LIST,
   CREATE_CONTACT,
   SETTINGS,
 } from '../constants/routeNames'
-import Contacts from '../screens/Contacts'
 import ContactDetail from '../screens/ContactDetail'
+import Contacts from '../screens/Contacts'
 import CreateContact from '../screens/CreateContact'
 import Settings from '../screens/Settings'
 
@@ -30,4 +29,3 @@ const HomeNavigator = () => {
   )
 }
 export default HomeNavigator
-const styles = StyleSheet.create({})

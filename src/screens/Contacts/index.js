@@ -1,12 +1,12 @@
 import React from 'react'
-
 import { StyleSheet, Text, View } from 'react-native'
+import Container from '../../components/common/Container'
+
 const Contacts = () => {
   return (
-    <View>
+    <Container>
       <Text>Contacts</Text>
-    </View>
+    </Container>
   )
 }
 export default Contacts
-const styles = StyleSheet.create({})

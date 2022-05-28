@@ -4,7 +4,7 @@ import Container from '../../components/common/Container'
 import Input from '../../components/Input'
 
 const Login = () => {
-  const [value, setValue] = useState('Placeholder')
+  const [value, setValue] = useState('')
 
   return (
     <Container>
@@ -12,7 +12,14 @@ const Login = () => {
         label="Username"
         handleOnChangeText={text => setValue(text)}
         value={value}
-        icon={<Text>I</Text>}
+        iconPosition="right"
+        // error={'This field is required'}
+      />
+      <Input
+        label="Password"
+        handleOnChangeText={text => setValue(text)}
+        value={value}
+        icon={<Text>HIDE</Text>}
         iconPosition="right"
       />
     </Container>

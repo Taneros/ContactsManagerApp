@@ -1,29 +1,9 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text } from 'react-native'
-import Container from '../../components/common/Container'
-import Input from '../../components/Input'
+import React from 'react'
+import { Text } from 'react-native'
+
+import LoginComponent from '../../components/Login'
 
 const Login = () => {
-  const [value, setValue] = useState('')
-
-  return (
-    <Container>
-      <Input
-        label="Username"
-        handleOnChangeText={text => setValue(text)}
-        value={value}
-        iconPosition="right"
-        // error={'This field is required'}
-      />
-      <Input
-        label="Password"
-        handleOnChangeText={text => setValue(text)}
-        value={value}
-        icon={<Text>HIDE</Text>}
-        iconPosition="right"
-      />
-    </Container>
-  )
+  return <LoginComponent />
 }
 export default Login
-const styles = StyleSheet.create({})

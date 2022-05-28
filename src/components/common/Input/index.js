@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Text, TextInput, View } from 'react-native'
-import colors from '../../assets/theme/colors'
+import colors from '../../../assets/theme/colors'
 import styles from './styles'
 
 const Input = ({

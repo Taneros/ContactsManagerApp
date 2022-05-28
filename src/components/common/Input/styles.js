@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import colors from '../../assets/theme/colors'
+import colors from '../../../assets/theme/colors'
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   textInput: {
     marginLeft: 5,
     flex: 1,
-    color: colors.grey,
+    width: '100%',
   },
 
   inputContainer: {

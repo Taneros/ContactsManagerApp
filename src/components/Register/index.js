@@ -2,15 +2,14 @@ import { useNavigation, navigationRef } from '@react-navigation/native'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import Container from '../../components/common/Container'
-import CustomButton from '../../components/common/CustomButton'
-import Input from '../../components/common/Input'
-import { REGISTER } from '../../constants/routeNames'
+import Container from '../common/Container'
+import CustomButton from '../common/CustomButton'
+import Input from '../common/Input'
+import { LOGIN } from '../../constants/routeNames'
 import styles from './styles'
 
-const LoginComponent = () => {
+const RegisterComponent = () => {
   const { navigate } = useNavigation()
-  const route = navigationRef
 
   return (
     <Container>
@@ -22,12 +21,30 @@ const LoginComponent = () => {
       />
       <View>
         <Text style={styles.title}>Welcome to Contaxts</Text>
-        <Text style={styles.subtitle}>Please login here</Text>
+        <Text style={styles.subtitle}>Create a free account</Text>
         <View style={styles.form}>
           <Input
             label="Username"
             iconPosition="right"
             placeHolder="Enter Username"
+            // error={'This field is required'}
+          />
+          <Input
+            label="First Name"
+            iconPosition="right"
+            placeHolder="Enter firstname"
+            // error={'This field is required'}
+          />
+          <Input
+            label="Last Name"
+            iconPosition="right"
+            placeHolder="Enter lastname"
+            // error={'This field is required'}
+          />
+          <Input
+            label="Email"
+            iconPosition="right"
+            placeHolder="Enter email"
             // error={'This field is required'}
           />
           <Input
@@ -37,15 +54,16 @@ const LoginComponent = () => {
             placeHolder="Enter Password"
             secureTextEntry={true}
           />
-          <CustomButton title="Login" />
+          <CustomButton title="Register" />
           <View style={styles.createNewAccount}>
-            <Text style={styles.createNewAccountText}>Need a new account?</Text>
+            <Text style={styles.createNewAccountText}>
+              Already have an account?
+            </Text>
             <TouchableOpacity
               onPress={() => {
-                navigate(REGISTER)
-                // navigationRef.navigate(REGISTER)
+                navigate(LOGIN)
               }}>
-              <Text style={styles.createNewAccountBtnText}>Register</Text>
+              <Text style={styles.createNewAccountBtnText}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -53,4 +71,4 @@ const LoginComponent = () => {
     </Container>
   )
 }
-export default LoginComponent
+export default RegisterComponent

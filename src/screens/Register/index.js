@@ -9,7 +9,18 @@ const Register = () => {
     setForm({ ...form, [name]: value })
 
     if (value !== '') {
-      setErrors(prev => ({ ...prev, [name]: null }))
+      if (name === 'password') {
+        if (value.length < 6) {
+          setErrors(prev => ({
+            ...prev,
+            [name]: 'This field needs min 6 characters!',
+          }))
+        } else {
+          setErrors(prev => ({ ...prev, [name]: null }))
+        }
+      } else {
+        setErrors(prev => ({ ...prev, [name]: null }))
+      }
     } else {
       setErrors(prev => ({ ...prev, [name]: 'This field is required!' }))
     }

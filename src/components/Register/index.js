@@ -8,7 +8,7 @@ import Input from '../common/Input'
 import { LOGIN } from '../../constants/routeNames'
 import styles from './styles'
 
-const RegisterComponent = () => {
+const RegisterComponent = ({ onSubmit, onChange, form, errors }) => {
   const { navigate } = useNavigation()
 
   return (
@@ -27,25 +27,37 @@ const RegisterComponent = () => {
             label="Username"
             iconPosition="right"
             placeHolder="Enter Username"
-            // error={'This field is required'}
+            onChangeText={value => {
+              onChange({ name: 'userName', value })
+            }}
+            error={errors.userName}
           />
           <Input
             label="First Name"
             iconPosition="right"
             placeHolder="Enter firstname"
-            // error={'This field is required'}
+            onChangeText={value => {
+              onChange({ name: 'firstName', value })
+            }}
+            error={errors.firstName}
           />
           <Input
             label="Last Name"
             iconPosition="right"
             placeHolder="Enter lastname"
-            // error={'This field is required'}
+            onChangeText={value => {
+              onChange({ name: 'lastName', value })
+            }}
+            error={errors.lastName}
           />
           <Input
             label="Email"
             iconPosition="right"
             placeHolder="Enter email"
-            // error={'This field is required'}
+            onChangeText={value => {
+              onChange({ name: 'email', value })
+            }}
+            error={errors.email}
           />
           <Input
             label="Password"
@@ -53,8 +65,12 @@ const RegisterComponent = () => {
             iconPosition="right"
             placeHolder="Enter Password"
             secureTextEntry={true}
+            onChangeText={value => {
+              onChange({ name: 'password', value })
+            }}
+            error={errors.password}
           />
-          <CustomButton title="Register" />
+          <CustomButton onPress={onSubmit} title="Register" />
           <View style={styles.createNewAccount}>
             <Text style={styles.createNewAccountText}>
               Already have an account?

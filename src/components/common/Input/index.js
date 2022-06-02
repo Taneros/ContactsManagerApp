@@ -5,7 +5,7 @@ import styles from './styles'
 
 const Input = ({
   value,
-  handleOnChangeText,
+  onChangeText,
   style,
   label,
   icon,
@@ -26,12 +26,14 @@ const Input = ({
   }
 
   const getBorderColor = () => {
-    if (focused) {
-      return colors.primary
-    }
     if (error) {
       return colors.danger
-    } else return colors.grey
+    }
+    if (focused) {
+      return colors.primary
+    } else {
+      return colors.grey
+    }
   }
   return (
     <View style={styles.inputContainer}>
@@ -44,8 +46,8 @@ const Input = ({
         ]}>
         {icon && <View>{icon}</View>}
         <TextInput
-          style={[styles.textInput]}
-          onChangeText={text => handleOnChangeText(text)}
+          style={[styles.textInput, style]}
+          onChangeText={onChangeText}
           value={value}
           onFocus={() => {
             setFocused(true)

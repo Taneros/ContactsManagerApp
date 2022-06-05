@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import RegisterComponent from '../../components/Register'
+import axios from '../../helpers/axiosInterceptor'
 
 const Register = () => {
   const [form, setForm] = useState({})
   const [errors, setErrors] = useState({})
+
+  useEffect(() => {
+    axios.get('/contacts').catch(error => console.log(`error`, error.response))
+  }, [])
 
   const onChange = ({ name, value }) => {
     setForm({ ...form, [name]: value })

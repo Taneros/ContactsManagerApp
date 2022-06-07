@@ -6,6 +6,7 @@ import Container from '../../components/common/Container'
 import CustomButton from '../../components/common/CustomButton'
 import Input from '../../components/common/Input'
 import { REGISTER } from '../../constants/routeNames'
+import Message from '../common/Message'
 import styles from './styles'
 
 const LoginComponent = () => {
@@ -23,6 +24,17 @@ const LoginComponent = () => {
       <View>
         <Text style={styles.title}>Welcome to Contaxts</Text>
         <Text style={styles.subtitle}>Please login here</Text>
+
+        <Message
+          retry
+          retryFn={() => {
+            console.log(`retry`)
+          }}
+          danger
+          onDismiss={() => {}}
+          message={'Invalid credentials'}
+        />
+
         <View style={styles.form}>
           <Input
             label="Username"

@@ -8,7 +8,6 @@ import { LOGIN } from '../../constants/routeNames'
 
 const Register = () => {
   const [form, setForm] = useState({})
-  console.log('🚀 ~ file: index.js ~ line 9 ~ Register ~ form', form)
   const [errors, setErrors] = useState({})
   const {
     authDispatch,

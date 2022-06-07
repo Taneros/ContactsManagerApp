@@ -1,14 +1,40 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext, useCallback } from 'react'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import RegisterComponent from '../../components/Register'
 import axios from '../../helpers/axiosInterceptor'
+import register, { clearAuthState } from '../../context/actions/auth/register'
+import { GlobaContext } from '../../context/Provider'
+import { LOGIN } from '../../constants/routeNames'
 
 const Register = () => {
   const [form, setForm] = useState({})
+  console.log('🚀 ~ file: index.js ~ line 9 ~ Register ~ form', form)
   const [errors, setErrors] = useState({})
+  const {
+    authDispatch,
+    authState: { error, loading, data },
+  } = useContext(GlobaContext)
+  const { navigate } = useNavigation()
 
   useEffect(() => {
-    axios.get('/contacts').catch(error => console.log(`error`, error.response))
+    // axios.get('/contacts').catch(error => console.log(`error`, error.response))
   }, [])
+
+  useEffect(() => {
+    if (data) {
+      navigate(LOGIN)
+    }
+  }, [data])
+
+  useFocusEffect(
+    React.useCallback(() => {
+      return () => {
+        if (data || error) {
+          clearAuthState()(authDispatch)
+        }
+      }
+    }, [data, error])
+  )
 
   const onChange = ({ name, value }) => {
     setForm({ ...form, [name]: value })
@@ -59,6 +85,14 @@ const Register = () => {
         password: 'Password field is required!',
       }))
     }
+
+    if (
+      Object.values(form).length === 5 &&
+      Object.values(form).every(item => item.trim().length > 0) &&
+      Object.values(errors).every(error => !error)
+    ) {
+      register(form)(authDispatch)
+    }
   }
 
   return (
@@ -67,6 +101,8 @@ const Register = () => {
       onChange={onChange}
       form={form}
       errors={errors}
+      error={error}
+      loading={loading}
     />
   )
 }

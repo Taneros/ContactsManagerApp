@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 16,
   },
+  dangerText: {
+    color: colors.danger,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
 })
 
 export default styles

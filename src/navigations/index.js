@@ -5,7 +5,6 @@ import DrawerNavigator from './DrawerNavigator'
 import { GlobaContext } from '../context/Provider'
 
 const AppNavContainer = () => {
-  const state = useContext(GlobaContext)
   const {
     authState: { isLoggedIn },
   } = useContext(GlobaContext)

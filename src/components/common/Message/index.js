@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import colors from '../../../assets/theme/colors'
@@ -14,6 +14,7 @@ const Message = ({
   retryFn,
   onDismiss,
 }) => {
+  const [userDismissed, setUserDismissed] = useState(false)
   const getBgColor = () => {
     if (primary) {
       return colors.primary
@@ -29,32 +30,51 @@ const Message = ({
     }
   }
   return (
-    <TouchableOpacity
-      style={[styles.wrapper, { backgroundColor: getBgColor() }]}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
-        <Text
-          style={{
-            color: colors.white,
-          }}>
-          {message}
-        </Text>
-
-        {retry && (
-          <TouchableOpacity onPress={retryFn}>
+    <>
+      {!userDismissed ? (
+        <TouchableOpacity
+          style={[styles.wrapper, { backgroundColor: getBgColor() }]}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
             <Text
               style={{
                 color: colors.white,
               }}>
-              Retry
+              {message}
             </Text>
-          </TouchableOpacity>
-        )}
-      </View>
-    </TouchableOpacity>
+
+            {retry && !typeof onDismiss === 'function' && (
+              <TouchableOpacity onPress={retryFn}>
+                <Text
+                  style={{
+                    color: colors.white,
+                  }}>
+                  Retry
+                </Text>
+              </TouchableOpacity>
+            )}
+            {typeof onDismiss === 'function' && (
+              <TouchableOpacity
+                onPress={() => {
+                  setUserDismissed(true)
+                  onDismiss()
+                }}>
+                <Text
+                  style={{
+                    color: colors.white,
+                    paddingRight: 10,
+                  }}>
+                  x
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </TouchableOpacity>
+      ) : null}
+    </>
   )
 }
 export default Message

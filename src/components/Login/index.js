@@ -31,7 +31,9 @@ const LoginComponent = () => {
             console.log(`retry`)
           }}
           danger
-          onDismiss={() => {}}
+          onDismiss={() => {
+            console.log(`dismissed!`)
+          }}
           message={'Invalid credentials'}
         />
 

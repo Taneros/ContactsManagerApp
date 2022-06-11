@@ -6,6 +6,7 @@ import { LOGIN } from '../../constants/routeNames'
 import Container from '../common/Container'
 import CustomButton from '../common/CustomButton'
 import Input from '../common/Input'
+import Message from '../common/Message'
 import styles from './styles'
 
 const RegisterComponent = ({
@@ -31,9 +32,7 @@ const RegisterComponent = ({
         <Text style={styles.subtitle}>Create a free account</Text>
         <View style={styles.form}>
           {error?.error && (
-            <Text style={styles.dangerText}>
-              There was an error. {error.error}
-            </Text>
+            <Message danger retry retryFn={() => {}} message={error?.error} />
           )}
           <Input
             label="Username"

@@ -1,4 +1,4 @@
-import { useNavigation, navigationRef } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -9,9 +9,8 @@ import { REGISTER } from '../../constants/routeNames'
 import Message from '../common/Message'
 import styles from './styles'
 
-const LoginComponent = () => {
+const LoginComponent = ({ onSubmit, onChange, form, error, loading }) => {
   const { navigate } = useNavigation()
-  const route = navigationRef
 
   return (
     <Container>
@@ -25,24 +24,20 @@ const LoginComponent = () => {
         <Text style={styles.title}>Welcome to Contaxts</Text>
         <Text style={styles.subtitle}>Please login here</Text>
 
-        <Message
-          retry
-          retryFn={() => {
-            console.log(`retry`)
-          }}
-          danger
-          onDismiss={() => {
-            console.log(`dismissed!`)
-          }}
-          message={'Invalid credentials'}
-        />
-
         <View style={styles.form}>
+          {error && !error.error && (
+            <Message danger onDismiss={() => {}} message={error?.error} />
+          )}
+          {error?.error && (
+            <Message danger onDismiss={() => {}} message={error?.error} />
+          )}
           <Input
             label="Username"
             iconPosition="right"
             placeHolder="Enter Username"
-            // error={'This field is required'}
+            onChangeText={value => {
+              onChange({ name: 'userName', value })
+            }}
           />
           <Input
             label="Password"
@@ -50,14 +45,21 @@ const LoginComponent = () => {
             iconPosition="right"
             placeHolder="Enter Password"
             secureTextEntry={true}
+            onChangeText={value => {
+              onChange({ name: 'password', value })
+            }}
           />
-          <CustomButton title="Login" />
+          <CustomButton
+            disabled={loading}
+            loading={loading}
+            onPress={onSubmit}
+            title="Login"
+          />
           <View style={styles.createNewAccount}>
             <Text style={styles.createNewAccountText}>Need a new account?</Text>
             <TouchableOpacity
               onPress={() => {
                 navigate(REGISTER)
-                // navigationRef.navigate(REGISTER)
               }}>
               <Text style={styles.createNewAccountBtnText}>Register</Text>
             </TouchableOpacity>

@@ -3,7 +3,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import RegisterComponent from '../../components/Register'
 import axios from '../../helpers/axiosInterceptor'
 import register, { clearAuthState } from '../../context/actions/auth/register'
-import { GlobaContext } from '../../context/Provider'
+import { GlobalContext } from '../../context/Provider'
 import { LOGIN } from '../../constants/routeNames'
 
 const Register = () => {
@@ -12,7 +12,7 @@ const Register = () => {
   const {
     authDispatch,
     authState: { error, loading, data },
-  } = useContext(GlobaContext)
+  } = useContext(GlobalContext)
   const { navigate } = useNavigation()
 
   useEffect(() => {
@@ -27,7 +27,9 @@ const Register = () => {
 
   useFocusEffect(
     React.useCallback(() => {
+      console.log(`before return`)
       return () => {
+        console.log(`after return`)
         if (data || error) {
           clearAuthState()(authDispatch)
         }

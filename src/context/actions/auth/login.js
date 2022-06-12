@@ -4,6 +4,7 @@ import {
   LOGIN_SUCCESS,
 } from '../../../constants/actionTypes'
 import axiosInstance from '../../../helpers/axiosInterceptor'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default ({ password, userName: username }) =>
   dispatch => {
@@ -17,7 +18,13 @@ export default ({ password, userName: username }) =>
         username,
       })
       .then(res => {
-        console.log('LOGIN SUCCESS! 🚀 ~ file: login.js ~ line 20 ~ res', res)
+        console.log(
+          'LOGIN SUCCESS! 🚀 ~ file: login.js ~ line 20 ~ res',
+          res.data
+        )
+
+        AsyncStorage.setItem('token', res.data.token)
+        AsyncStorage.setItem('user', JSON.stringify(res.data.user))
 
         dispatch({
           type: LOGIN_SUCCESS,

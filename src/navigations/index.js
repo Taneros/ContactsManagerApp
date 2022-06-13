@@ -31,17 +31,13 @@ const AppNavContainer = () => {
 
   useEffect(() => {
     getUser()
-  }, [])
+  }, [isLoggedIn])
 
   return (
     <>
       {isAuthLoaded ? (
         <NavigationContainer>
-          {isLoggedIn || isAuthenticated ? (
-            <DrawerNavigator />
-          ) : (
-            <AuthNavigator />
-          )}
+          {isAuthenticated ? <DrawerNavigator /> : <AuthNavigator />}
         </NavigationContainer>
       ) : (
         <ActivityIndicator />

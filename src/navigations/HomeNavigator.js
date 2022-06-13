@@ -17,14 +17,12 @@ const HomeNavigator = () => {
     <HomeStack.Navigator initialRouteName={CONTACT_LIST}>
       <HomeStack.Screen
         name={CONTACT_LIST}
-        component={Contacts}></HomeStack.Screen>
-      <HomeStack.Screen
-        name={CONTACT_DETAIL}
-        component={ContactDetail}></HomeStack.Screen>
-      <HomeStack.Screen
-        name={CREATE_CONTACT}
-        component={CreateContact}></HomeStack.Screen>
-      <HomeStack.Screen name={SETTINGS} component={Settings}></HomeStack.Screen>
+        component={Contacts}
+        options={{ headerLeft: () => {} }}
+      />
+      <HomeStack.Screen name={CONTACT_DETAIL} component={ContactDetail} />
+      <HomeStack.Screen name={CREATE_CONTACT} component={CreateContact} />
+      <HomeStack.Screen name={SETTINGS} component={Settings} />
     </HomeStack.Navigator>
   )
 }

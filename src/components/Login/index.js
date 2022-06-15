@@ -9,7 +9,7 @@ import { REGISTER } from '../../constants/routeNames'
 import Message from '../common/Message'
 import styles from './styles'
 
-const LoginComponent = ({ onSubmit, onChange, form, error, loading }) => {
+const LoginComponent = ({ onSubmit, onChange, form, error, loading, info }) => {
   const { navigate } = useNavigation()
   const [isSecureShow, setIsSecureShow] = useState(false)
 
@@ -32,6 +32,14 @@ const LoginComponent = ({ onSubmit, onChange, form, error, loading }) => {
           {error?.error && (
             <Message danger onDismiss={() => {}} message={error?.error} />
           )}
+          {info.info && (
+            <Message
+              primary
+              onDismiss={() => {}}
+              message={`User with username: ${info.info} has been created!`}
+            />
+          )}
+
           <Input
             label="Username"
             iconPosition="right"

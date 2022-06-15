@@ -1,11 +1,24 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../context/Provider'
 
 import LoginComponent from '../../components/Login'
 import login from '../../context/actions/auth/login'
+import { useRoute } from '@react-navigation/native'
 
 const Login = () => {
   const [form, setForm] = useState({})
+
+  const { params } = useRoute()
+
+  const [info, setInfo] = useState({})
+
+  useEffect(() => {
+    if (params?.data) {
+      console.log(`params`, params)
+      setInfo({ info: params.data.username })
+    }
+  }, [params])
+
   const {
     authDispatch,
     authState: { error, loading },
@@ -28,6 +41,7 @@ const Login = () => {
       form={form}
       error={error}
       loading={loading}
+      info={info}
     />
   )
 }

@@ -19,17 +19,9 @@ const Register = () => {
     // axios.get('/contacts').catch(error => console.log(`error`, error.response))
   }, [])
 
-  useEffect(() => {
-    if (data) {
-      navigate(LOGIN)
-    }
-  }, [data])
-
   useFocusEffect(
     React.useCallback(() => {
-      console.log(`before return`)
       return () => {
-        console.log(`after return`)
         if (data || error) {
           clearAuthState()(authDispatch)
         }
@@ -92,7 +84,9 @@ const Register = () => {
       Object.values(form).every(item => item.trim().length > 0) &&
       Object.values(errors).every(error => !error)
     ) {
-      register(form)(authDispatch)
+      register(form)(authDispatch)(data => {
+        navigate(LOGIN, { data })
+      })
     }
   }
 

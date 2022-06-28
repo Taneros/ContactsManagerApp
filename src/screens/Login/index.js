@@ -9,6 +9,7 @@ const Login = () => {
   const [form, setForm] = useState({})
 
   const { params } = useRoute()
+  console.log('🚀 ~ file: index.js ~ line 12 ~ Login ~ params', params)
 
   const [info, setInfo] = useState({})
 

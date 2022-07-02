@@ -5,6 +5,7 @@ import styles from './styles'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { SETTINGS } from '../../constants/routeNames'
 import logout from '../../context/actions/auth/logout'
+import { Icon } from '@rneui/themed'
 
 const SideMenu = ({ navigation, authDispatch }) => {
   const handleUserLogout = () => {
@@ -22,12 +23,28 @@ const SideMenu = ({ navigation, authDispatch }) => {
 
   const menuItems = [
     {
-      icon: <Text>*</Text>,
+      icon: (
+        <Icon
+          name="settings-outline"
+          type="ionicon"
+          size={20}
+          style={{ paddingRight: 5 }}
+          color="gray"
+        />
+      ),
       name: 'Settings',
       onPress: () => navigation.navigate(SETTINGS),
     },
     {
-      icon: <Text>*</Text>,
+      icon: (
+        <Icon
+          name="log-out-outline"
+          type="ionicon"
+          size={20}
+          style={{ paddingRight: 5 }}
+          color="gray"
+        />
+      ),
       name: 'Logout',
       onPress: handleUserLogout,
     },

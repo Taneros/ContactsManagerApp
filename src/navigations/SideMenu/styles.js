@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'baseline',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     paddingVertical: 5,
     paddingHorizontal: 10,
   },

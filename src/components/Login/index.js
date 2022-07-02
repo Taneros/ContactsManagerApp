@@ -29,9 +29,11 @@ const LoginComponent = ({ onSubmit, onChange, form, error, loading, info }) => {
           {error && !error.error && (
             <Message danger onDismiss={() => {}} message={error?.error} />
           )}
+
           {error?.error && (
             <Message danger onDismiss={() => {}} message={error?.error} />
           )}
+
           {info.info && (
             <Message
               primary
@@ -48,6 +50,7 @@ const LoginComponent = ({ onSubmit, onChange, form, error, loading, info }) => {
               onChange({ name: 'userName', value })
             }}
           />
+
           <Input
             label="Password"
             icon={
@@ -62,12 +65,14 @@ const LoginComponent = ({ onSubmit, onChange, form, error, loading, info }) => {
               onChange({ name: 'password', value })
             }}
           />
+
           <CustomButton
             disabled={loading}
             loading={loading}
             onPress={onSubmit}
             title="Login"
           />
+
           <View style={styles.createNewAccount}>
             <Text style={styles.createNewAccountText}>Need a new account?</Text>
             <TouchableOpacity

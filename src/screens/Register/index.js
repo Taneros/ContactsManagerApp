@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import RegisterComponent from '../../components/Register'
-import axios from '../../helpers/axiosInterceptor'
+import axios from '../../helpers/axiosInstance'
 import register, { clearAuthState } from '../../context/actions/auth/register'
 import { GlobalContext } from '../../context/Provider'
 import { LOGIN } from '../../constants/routeNames'

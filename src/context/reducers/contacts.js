@@ -1,4 +1,45 @@
-export default contacts = (state, { type, payload }) =>
-  ({
-    GET_CONTACTS: state,
-  }[`${type}` ?? state])
+import {
+  GET_CONTACTS_LOADING,
+  GET_CONTACTS_SUCCESS,
+} from '../../constants/actionTypes'
+
+export default contacts = (state, { type, payload }) => {
+  switch (type) {
+    case GET_CONTACTS_LOADING:
+      return {
+        ...state,
+        getContacts: {
+          ...state.getContacts,
+          loading: true,
+          error: null,
+        },
+      }
+
+    case GET_CONTACTS_SUCCESS:
+      return {
+        ...state,
+        getContacts: {
+          ...state.getContacts,
+          loading: false,
+          data: payload,
+          error: null,
+        },
+      }
+
+    case GET_CONTACTS_SUCCESS:
+      return {
+        ...state,
+        getContacts: {
+          ...state.getContacts,
+          loading: false,
+          error: payload,
+        },
+      }
+    default:
+      return state
+  }
+}
+
+// ({
+//   GET_CONTACTS: state,
+// }[`${type}` ?? state])

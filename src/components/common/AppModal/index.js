@@ -11,7 +11,6 @@ const AppModal = ({
   modalVisible,
   setModalVisible,
 }) => {
-  console.log(`modalFooter`, modalFooter)
   return (
     <Modal visible={modalVisible} transparent>
       <Pressable

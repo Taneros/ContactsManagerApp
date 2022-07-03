@@ -3,7 +3,7 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
 } from '../../../constants/actionTypes'
-import axiosInstance from '../../../helpers/axiosInterceptor'
+import axiosInstance from '../../../helpers/axiosInstance'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default ({ password, userName: username }) =>
@@ -38,7 +38,9 @@ export default ({ password, userName: username }) =>
           type: LOGIN_FAIL,
           payload: err.res
             ? err.res.data
-            : { error: 'Something went wrong! Try again.' },
+            : {
+                error: 'Something went wrong when trying to login! Try again.',
+              },
         })
       })
   }

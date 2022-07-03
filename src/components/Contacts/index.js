@@ -3,7 +3,6 @@ import { View, Text, FlatList, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { ActivityIndicator } from 'react-native'
 import AppModal from '../common/AppModal'
-import CustomButton from '../common/CustomButton'
 import Message from '../common/Message'
 import colors from '../../assets/theme/colors'
 import { Icon } from '@rneui/themed'
@@ -22,17 +21,18 @@ const renderFlatlistItem = ({ item }) => {
 
   const { contact_picture, first_name, last_name, phone_number } = item
 
+  if (!item.id) return null
+
   return (
     <TouchableOpacity style={styles.itemContainer}>
       <View style={styles.contactItem}>
-        {contact_picture && (
+        {!!contact_picture && (
           <Image
             source={{ uri: contact_picture }}
             style={{
               width: 45,
               height: 45,
               borderRadius: 23,
-
               backgroundColor: colors.grey,
             }}
           />
@@ -44,19 +44,27 @@ const renderFlatlistItem = ({ item }) => {
               height: 45,
               borderRadius: 23,
               backgroundColor: colors.grey,
-            }}></View>
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text>{first_name[0].toUpperCase()}</Text>
+            <Text style={{ marginLeft: 2 }}>{last_name[0].toUpperCase()}</Text>
+          </View>
         )}
 
-        <View style={{ flexDirection: 'row' }}>
-          <Text>{first_name}</Text>
-          <Text>{last_name}</Text>
+        <View style={{ paddingLeft: 20 }}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.name}>{first_name}</Text>
+            <Text style={styles.name}>{last_name}</Text>
+          </View>
+          <Text>{phone_number}</Text>
         </View>
-        <Text>{phone_number}</Text>
       </View>
       <Icon
         type="ionicon"
         name="chevron-forward-outline"
-        size={20}
+        size={25}
         color="gray"
       />
     </TouchableOpacity>
@@ -69,8 +77,34 @@ const ContactsComponent = ({
   data,
   loading,
 }) => {
+  data.push(
+    ...[
+      {
+        contact_picture: '',
+        first_name: 'Renat',
+        last_name: 'Fatkh',
+        phone_number: '+79969015454',
+        id: '123',
+      },
+      {
+        contact_picture: '',
+        first_name: 'Rusl',
+        last_name: 'Fatkh',
+        phone_number: '+79969015434',
+        id: '1234',
+      },
+      {
+        contact_picture: '',
+        first_name: 'Fedya',
+        last_name: 'Capl',
+        phone_number: '+79979015454',
+        id: '12345',
+      },
+    ]
+  )
+
   return (
-    <View>
+    <View style={{ backgroundColor: colors.white }}>
       <AppModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
@@ -91,6 +125,9 @@ const ContactsComponent = ({
         <View style={[{ paddingVertical: 20 }]}>
           <FlatList
             renderItem={renderFlatlistItem}
+            ItemSeparatorComponent={() => (
+              <View style={{ height: 1, backgroundColor: '#c3c3c3' }}></View>
+            )}
             data={data}
             keyExtractor={item => String(item.id)}
             ListEmptyComponent={ListEmptyComponent}

@@ -1,10 +1,50 @@
 import {
+  CREATE_CONTACT_FAIL,
+  CREATE_CONTACT_LOADING,
+  CREATE_CONTACT_SUCCESS,
   GET_CONTACTS_LOADING,
   GET_CONTACTS_SUCCESS,
 } from '../../constants/actionTypes'
 
 export default contacts = (state, { type, payload }) => {
   switch (type) {
+    case CREATE_CONTACT_LOADING:
+      return {
+        ...state,
+        createContact: {
+          ...state.createContact,
+          loading: true,
+          error: null,
+        },
+      }
+
+    case CREATE_CONTACT_SUCCESS:
+      return {
+        ...state,
+        createContact: {
+          ...state.createContact,
+          loading: false,
+          data: payload,
+          error: null,
+        },
+        getContacts: {
+          ...state.getContacts,
+          loading: false,
+          data: [payload, ...state.getContacts.data],
+          error: null,
+        },
+      }
+
+    case CREATE_CONTACT_FAIL:
+      return {
+        ...state,
+        createContact: {
+          ...state.createContact,
+          loading: false,
+          error: payload,
+        },
+      }
+
     case GET_CONTACTS_LOADING:
       return {
         ...state,
@@ -26,7 +66,7 @@ export default contacts = (state, { type, payload }) => {
         },
       }
 
-    case GET_CONTACTS_SUCCESS:
+    case GET_CONTACTS_FAIL:
       return {
         ...state,
         getContacts: {
@@ -35,6 +75,7 @@ export default contacts = (state, { type, payload }) => {
           error: payload,
         },
       }
+
     default:
       return state
   }

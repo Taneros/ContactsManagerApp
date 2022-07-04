@@ -50,15 +50,17 @@ const renderFlatlistItem = ({ item }) => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text>{first_name[0].toUpperCase()}</Text>
-            <Text style={{ marginLeft: 2 }}>{last_name[0].toUpperCase()}</Text>
+            <Text>{first_name[0].trim().toUpperCase()}</Text>
+            <Text style={{ marginLeft: 2 }}>
+              {last_name[0].trim().toUpperCase()}
+            </Text>
           </View>
         )}
 
         <View style={{ paddingLeft: 20 }}>
           <View style={{ flexDirection: 'row' }}>
             <Text style={styles.name}>{first_name}</Text>
-            <Text style={styles.name}>{last_name}</Text>
+            <Text style={[styles.name, { marginLeft: 5 }]}>{last_name}</Text>
           </View>
           <Text>{phone_number}</Text>
         </View>
@@ -81,31 +83,31 @@ const ContactsComponent = ({
 }) => {
   const { navigate } = useNavigation()
 
-  data.push(
-    ...[
-      {
-        contact_picture: '',
-        first_name: 'Renat',
-        last_name: 'Fatkh',
-        phone_number: '+79969015454',
-        id: '123',
-      },
-      {
-        contact_picture: '',
-        first_name: 'Rusl',
-        last_name: 'Fatkh',
-        phone_number: '+79969015434',
-        id: '1234',
-      },
-      {
-        contact_picture: '',
-        first_name: 'Fedya',
-        last_name: 'Capl',
-        phone_number: '+79979015454',
-        id: '12345',
-      },
-    ]
-  )
+  // data.push(
+  //   ...[
+  //     {
+  //       contact_picture: '',
+  //       first_name: 'Renat',
+  //       last_name: 'Fatkh',
+  //       phone_number: '+79969015454',
+  //       id: '123',
+  //     },
+  //     {
+  //       contact_picture: '',
+  //       first_name: 'Rusl',
+  //       last_name: 'Fatkh',
+  //       phone_number: '+79969015434',
+  //       id: '1234',
+  //     },
+  //     {
+  //       contact_picture: '',
+  //       first_name: 'Fedya',
+  //       last_name: 'Capl',
+  //       phone_number: '+79979015454',
+  //       id: '12345',
+  //     },
+  //   ]
+  // )
 
   return (
     <>

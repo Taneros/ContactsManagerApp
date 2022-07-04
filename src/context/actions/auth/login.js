@@ -36,8 +36,8 @@ export default ({ password, userName: username }) =>
 
         dispatch({
           type: LOGIN_FAIL,
-          payload: err.res
-            ? err.res.data
+          payload: err.response
+            ? err.response.data
             : {
                 error: 'Something went wrong when trying to login! Try again.',
               },

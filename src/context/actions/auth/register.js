@@ -47,7 +47,12 @@ export default ({
       .catch(err => {
         dispatch({
           type: REGISTER_FAIL,
-          payload: err.res ? err.res.data : { error: 'Something went wrong!' },
+          payload: err.response
+            ? err.response.data
+            : {
+                error:
+                  'Something went wrong when registering a new user! Try again.',
+              },
         })
       })
   }

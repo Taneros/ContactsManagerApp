@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   name: {
-    marginLeft: 5,
     fontWeight: '600',
   },
   floatingActionButton: {

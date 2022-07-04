@@ -23,8 +23,8 @@ export default () => dispatch => {
     .catch(err => {
       dispatch({
         type: GET_CONTACTS_FAIL,
-        payload: err.res
-          ? err.res.data
+        payload: err.response
+          ? err.response.data
           : {
               error: 'Something went wrong when fetching contacts! Try again.',
             },

@@ -18,6 +18,20 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     fontWeight: '600',
   },
+  floatingActionButton: {
+    backgroundColor: colors.white,
+    width: 55,
+    height: 55,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 28,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    bottom: 50,
+    right: 20,
+  },
 })
 
 export default styles

@@ -32,6 +32,7 @@ const CreateContact = () => {
       onSubmit={onSubmit}
       loading={loading}
       error={error}
+      setForm={setForm}
     />
   )
 }

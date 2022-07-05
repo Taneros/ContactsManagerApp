@@ -13,8 +13,8 @@ export default form => dispatch => onSuccess => {
     first_name: form.firstName || '',
     last_name: form.lastName || '',
     phone_number: form.phoneNumber || '',
-    contact_picture: form.contactPicture || 'http://localhost',
-    is_favorite: false,
+    contact_picture: form.contactPicture || null,
+    is_favorite: form.isFavorite || false,
   }
 
   dispatch({

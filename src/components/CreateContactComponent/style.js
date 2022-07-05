@@ -18,4 +18,9 @@ export default StyleSheet.create({
   profileSumbit: {
     paddingTop: 50,
   },
+  switchFavorite: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 })

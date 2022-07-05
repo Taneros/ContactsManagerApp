@@ -6,6 +6,8 @@ import CustomButton from '../common/CustomButton'
 import styles from './style'
 import DEFAULT_IMAGE_URI from '../../constants/general'
 import colors from '../../assets/theme/colors'
+import ImagePicker from '../ImagePicker'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const CreateContactComponent = ({
   onChangeText,
@@ -14,6 +16,9 @@ const CreateContactComponent = ({
   loading,
   error,
   setForm,
+  sheetRef,
+  openSheet,
+  closeSheet,
 }) => {
   console.log(`error`, error)
 
@@ -31,7 +36,9 @@ const CreateContactComponent = ({
           source={require('../../assets/images/avatar_default_head_person.png')}
           style={styles.profileImage}
         />
-        <Text style={styles.profileImageText}>Choose picture</Text>
+        <TouchableOpacity onPress={openSheet}>
+          <Text style={styles.profileImageText}>Choose picture</Text>
+        </TouchableOpacity>
         <Input
           label="First name"
           placeholder="Enter first name"
@@ -75,6 +82,7 @@ const CreateContactComponent = ({
           disabled={loading}
         />
       </Container>
+      <ImagePicker ref={sheetRef} />
     </View>
   )
 }

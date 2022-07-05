@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import CreateContactComponent from '../../components/CreateContactComponent'
 import { CONTACT_LIST } from '../../constants/routeNames'
 import createContact from '../../context/actions/contacts/createContact'
@@ -15,6 +15,8 @@ const CreateContact = () => {
   const [form, setForm] = useState({})
   const { navigate } = useNavigation()
 
+  const sheetRef = useRef(null)
+
   const onChangeText = ({ name, value }) => {
     setForm({ ...form, [name]: value })
   }
@@ -25,6 +27,14 @@ const CreateContact = () => {
     })
   }
 
+  const openSheet = () => {
+    if (sheetRef.current) sheetRef.current.open()
+  }
+
+  const closeSheet = () => {
+    if (sheetRef.current) sheetRef.current.close()
+  }
+
   return (
     <CreateContactComponent
       onChangeText={onChangeText}
@@ -33,6 +43,9 @@ const CreateContact = () => {
       loading={loading}
       error={error}
       setForm={setForm}
+      sheetRef={sheetRef}
+      openSheet={openSheet}
+      closeSheet={closeSheet}
     />
   )
 }

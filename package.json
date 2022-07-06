@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "react-native run-android --active-arch-only",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -19,6 +19,7 @@
     "@rneui/base": "^4.0.0-rc.4",
     "@rneui/themed": "^4.0.0-rc.4",
     "axios": "^0.27.2",
+    "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-native": "0.68.2",
     "react-native-dotenv": "^3.3.1",

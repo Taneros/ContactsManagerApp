@@ -1,8 +1,18 @@
 import { Icon } from '@rneui/themed'
 import React from 'react'
-import { View, Text, Modal, Pressable } from 'react-native'
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
+import {
+  View,
+  Text,
+  Modal,
+  Pressable,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native'
+// import { ScrollView } from 'react-native-gesture-handler'
 import styles from './styles'
+import PropTypes from 'prop-types'
+
+// TODO: style modal: add border
 
 const AppModal = ({
   title,
@@ -10,34 +20,57 @@ const AppModal = ({
   modalFooter,
   modalVisible,
   setModalVisible,
+  closeOnTouchOutside,
 }) => {
   return (
     <Modal visible={modalVisible} transparent>
-      <Pressable
+      <TouchableOpacity
         style={styles.wrapper}
         onPress={() => {
-          setModalVisible(false)
+          if (closeOnTouchOutside) setModalVisible(false)
         }}>
         <View style={styles.modalView}>
           <ScrollView>
             <View style={styles.header}>
               <Text style={styles.title}>{title || 'header text'}</Text>
-              <Icon name="close-outline" type="ionicon" color="gray" />
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <Icon
+                  name="close-outline"
+                  type="ionicon"
+                  color="gray"
+                  size={35}
+                />
+              </TouchableOpacity>
             </View>
             <View style={styles.body}>{modalBody}</View>
-            <View style={styles.separator}></View>
-            {modalFooter && <View style={styles.footer}>{modalFooter}</View>}
+            {modalFooter && (
+              <>
+                <View style={styles.separator}></View>
+                <View style={styles.footer}>{modalFooter}</View>
+              </>
+            )}
             {!modalFooter && (
-              <View style={styles.footer}>
-                <Text>Privacy Policy</Text>
-                <Text>Terms of Service</Text>
-              </View>
+              <>
+                <View style={styles.separator}></View>
+                <View style={styles.footer}>
+                  <Text>Privacy Policy</Text>
+                  <Text>Terms of Service</Text>
+                </View>
+              </>
             )}
           </ScrollView>
         </View>
-      </Pressable>
+      </TouchableOpacity>
     </Modal>
   )
+}
+
+AppModal.propTypes = {
+  closeOnTouchOutside: PropTypes.bool,
+}
+
+AppModal.defaultProps = {
+  closeOnTouchOutside: true,
 }
 
 export default AppModal

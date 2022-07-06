@@ -13,6 +13,7 @@ const CreateContact = () => {
     },
   } = useContext(GlobalContext)
   const [form, setForm] = useState({})
+  const [imageFile, setImageFile] = useState(null)
   const { navigate } = useNavigation()
 
   const sheetRef = useRef(null)
@@ -35,6 +36,12 @@ const CreateContact = () => {
     if (sheetRef.current) sheetRef.current.close()
   }
 
+  const onImageSelect = image => {
+    closeSheet()
+    setImageFile(image)
+    console.log(`image`, image)
+  }
+
   return (
     <CreateContactComponent
       onChangeText={onChangeText}
@@ -46,6 +53,8 @@ const CreateContact = () => {
       sheetRef={sheetRef}
       openSheet={openSheet}
       closeSheet={closeSheet}
+      onImageSelect={onImageSelect}
+      imageFile={imageFile}
     />
   )
 }

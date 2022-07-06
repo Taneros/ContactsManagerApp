@@ -6,10 +6,13 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  profileImageContainer: {},
   profileImage: {
+    alignSelf: 'center',
     width: 150,
     height: 150,
-    alignSelf: 'center',
+    borderRadius: 75,
+    resizeMode: 'contain',
   },
   profileImageText: {
     textAlign: 'center',

@@ -80,6 +80,7 @@ const ContactsComponent = ({
   setModalVisible,
   data,
   loading,
+  sortBy,
 }) => {
   const { navigate } = useNavigation()
 
@@ -109,16 +110,18 @@ const ContactsComponent = ({
   //   ]
   // )
 
+  console.log(`sortBy component COntacts`, sortBy)
+
   return (
     <>
       <View style={{ backgroundColor: colors.white }}>
-        <AppModal
+        {/* <AppModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
           title={'My Profile'}
           modalBody={<></>}
           modalFooter={<View></View>}
-        />
+        /> */}
         {loading && (
           <ActivityIndicator
             size="large"
@@ -133,7 +136,22 @@ const ContactsComponent = ({
               ItemSeparatorComponent={() => (
                 <View style={{ height: 1, backgroundColor: '#c3c3c3' }}></View>
               )}
-              data={data}
+              data={
+                sortBy
+                  ? data.sort((a, b) => {
+                      if (sortBy === 'First Name')
+                        return a.first_name.toLowerCase() >
+                          b.first_name.toLowerCase()
+                          ? 1
+                          : -1
+                      if (sortBy === 'Last Name')
+                        return a.last_name.toLowerCase() >
+                          b.last_name.toLowerCase()
+                          ? 1
+                          : -1
+                    })
+                  : data
+              }
               keyExtractor={item => String(item.id)}
               ListEmptyComponent={ListEmptyComponent}
               ListFooterComponent={<View style={{ height: 50 }}></View>}

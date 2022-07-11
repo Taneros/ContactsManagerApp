@@ -73,6 +73,8 @@ const Settings = () => {
     }
   }
 
+  console.log(`sortBy Settings Screen`, sortBy)
+
   useEffect(() => {
     getSettings()
   }, [])

@@ -4,6 +4,7 @@ import CreateContactComponent from '../../components/CreateContactComponent'
 import { CONTACT_LIST } from '../../constants/routeNames'
 import createContact from '../../context/actions/contacts/createContact'
 import { GlobalContext } from '../../context/Provider'
+import uploadImage from '../../helpers/uploadImage'
 
 const CreateContact = () => {
   const {
@@ -14,6 +15,7 @@ const CreateContact = () => {
   } = useContext(GlobalContext)
   const [form, setForm] = useState({})
   const [imageFile, setImageFile] = useState(null)
+  const [isUploading, setIsUploading] = useState(false)
   const { navigate } = useNavigation()
 
   const sheetRef = useRef(null)
@@ -23,9 +25,23 @@ const CreateContact = () => {
   }
 
   const onSubmit = () => {
-    createContact(form)(contactsDispatch)(() => {
-      navigate(CONTACT_LIST)
-    })
+    console.log(`imageFile`, imageFile)
+
+    if (imageFile?.size) {
+      setIsUploading(true)
+      uploadImage({ imageFile, form })(url => {
+        console.log(`url success`, url)
+        setIsUploading(false)
+        createContact({ ...form, contactPicture: url })(contactsDispatch)(
+          () => {
+            navigate(CONTACT_LIST)
+          }
+        )
+      })(err => {
+        console.log('error uploading', err)
+        setForm(prev => ({ ...prev, error: { uploadError: err } })) //TODO: show this error make a component
+      })
+    }
   }
 
   const openSheet = () => {
@@ -40,6 +56,7 @@ const CreateContact = () => {
     closeSheet()
     setImageFile(image)
     console.log(`image`, image)
+    console.log(`form`, form)
   }
 
   return (
@@ -47,7 +64,7 @@ const CreateContact = () => {
       onChangeText={onChangeText}
       form={form}
       onSubmit={onSubmit}
-      loading={loading}
+      loading={loading || isUploading}
       error={error}
       setForm={setForm}
       sheetRef={sheetRef}

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "279525599887",
+    "project_id": "contaxt-18597",
+    "storage_bucket": "contaxt-18597.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279525599887:android:2f189a871081152f711efa",
+        "android_client_info": {
+          "package_name": "com.contactsmanagerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279525599887-fhu6m2m837og1rec8cufer2g7p0a8n2k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMjO5-h2nQMdZHz_gf3FH7kkctP50I1mI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279525599887-fhu6m2m837og1rec8cufer2g7p0a8n2k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

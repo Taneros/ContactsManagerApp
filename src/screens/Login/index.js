@@ -9,13 +9,11 @@ const Login = () => {
   const [form, setForm] = useState({})
 
   const { params } = useRoute()
-  console.log('🚀 ~ file: index.js ~ line 12 ~ Login ~ params', params)
 
   const [info, setInfo] = useState({})
 
   useEffect(() => {
     if (params?.data) {
-      console.log(`params`, params)
       setInfo({ info: params.data.username })
     }
   }, [params])

@@ -42,14 +42,11 @@ const Contacts = () => {
   const getSettings = async () => {
     try {
       const sortPref = await AsyncStorage.getItem('sortBy')
-      console.log(`sortBy from storage`)
       sortPref && setSortBy(sortPref)
     } catch (error) {
       console.log(`error`, error)
     }
   }
-
-  console.log(`sortBy`, sortBy)
 
   useFocusEffect(
     React.useCallback(() => {

@@ -18,11 +18,6 @@ export default ({ password, userName: username }) =>
         username,
       })
       .then(res => {
-        console.log(
-          'LOGIN SUCCESS! 🚀 ~ file: login.js ~ line 20 ~ res',
-          res.data
-        )
-
         AsyncStorage.setItem('token', res.data.token)
         AsyncStorage.setItem('user', JSON.stringify(res.data.user))
 
@@ -32,8 +27,6 @@ export default ({ password, userName: username }) =>
         })
       })
       .catch(err => {
-        console.log('LOGIN FAIL 🚀 ~ file: login.js ~ line 28 ~ err', err)
-
         dispatch({
           type: LOGIN_FAIL,
           payload: err.response

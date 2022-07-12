@@ -18,13 +18,4 @@ export default ({ imageFile, form }) =>
     } catch (error) {
       onError(error)
     }
-    // const task = ref.putFile(file.path)
-    // task
-    //   .then(async () => {
-    //     const url = await ref.getDownloadURL()
-    //     onSuccess(url)
-    //   })
-    //   .catch(err => {
-    //     onError(error)
-    //   })
   }

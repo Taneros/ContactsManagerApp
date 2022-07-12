@@ -7,8 +7,9 @@ import Message from '../common/Message'
 import colors from '../../assets/theme/colors'
 import { Icon } from '@rneui/themed'
 import styles from './style'
-import { CREATE_CONTACT } from '../../constants/routeNames'
+import { CONTACT_DETAIL, CREATE_CONTACT } from '../../constants/routeNames'
 import { useNavigation } from '@react-navigation/native'
+import { navigate } from '../../navigations/SideMenu/RootNavigator'
 
 const ListEmptyComponent = () => {
   return (
@@ -19,14 +20,16 @@ const ListEmptyComponent = () => {
 }
 
 const renderFlatlistItem = ({ item }) => {
-  console.log(`item`, item)
-
   const { contact_picture, first_name, last_name, phone_number } = item
 
   if (!item.id) return null
 
   return (
-    <TouchableOpacity style={styles.itemContainer}>
+    <TouchableOpacity
+      style={styles.itemContainer}
+      onPress={() => {
+        navigate(CONTACT_DETAIL, { item })
+      }}>
       <View style={styles.contactItem}>
         {!!contact_picture && (
           <Image
@@ -83,34 +86,6 @@ const ContactsComponent = ({
   sortBy,
 }) => {
   const { navigate } = useNavigation()
-
-  // data.push(
-  //   ...[
-  //     {
-  //       contact_picture: '',
-  //       first_name: 'Renat',
-  //       last_name: 'Fatkh',
-  //       phone_number: '+79969015454',
-  //       id: '123',
-  //     },
-  //     {
-  //       contact_picture: '',
-  //       first_name: 'Rusl',
-  //       last_name: 'Fatkh',
-  //       phone_number: '+79969015434',
-  //       id: '1234',
-  //     },
-  //     {
-  //       contact_picture: '',
-  //       first_name: 'Fedya',
-  //       last_name: 'Capl',
-  //       phone_number: '+79979015454',
-  //       id: '12345',
-  //     },
-  //   ]
-  // )
-
-  console.log(`sortBy component COntacts`, sortBy)
 
   return (
     <>

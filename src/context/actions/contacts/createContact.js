@@ -6,8 +6,6 @@ import {
 import axios from '../../../helpers/axiosInstance'
 
 export default form => dispatch => onSuccess => {
-  console.log(`about to send!`, form)
-
   const requestPayload = {
     country_code: 'RU',
     first_name: form.firstName || '',
@@ -24,8 +22,6 @@ export default form => dispatch => onSuccess => {
   axios
     .post('/contacts/', requestPayload)
     .then(res => {
-      console.log(`res.data`, res.data)
-
       dispatch({
         type: CREATE_CONTACT_SUCCESS,
         payload: res.data,

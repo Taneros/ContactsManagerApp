@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useContext, useRef, useState } from 'react'
-import CreateContactComponent from '../../components/CreateContactComponent'
+import CreateContactComponent from '../../components/CreateContact'
 import { CONTACT_LIST } from '../../constants/routeNames'
 import createContact from '../../context/actions/contacts/createContact'
 import { GlobalContext } from '../../context/Provider'
@@ -25,12 +25,9 @@ const CreateContact = () => {
   }
 
   const onSubmit = () => {
-    console.log(`imageFile`, imageFile)
-
     if (imageFile?.size) {
       setIsUploading(true)
       uploadImage({ imageFile, form })(url => {
-        console.log(`url success`, url)
         setIsUploading(false)
         createContact({ ...form, contactPicture: url })(contactsDispatch)(
           () => {
@@ -55,8 +52,6 @@ const CreateContact = () => {
   const onImageSelect = image => {
     closeSheet()
     setImageFile(image)
-    console.log(`image`, image)
-    console.log(`form`, form)
   }
 
   return (

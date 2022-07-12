@@ -13,8 +13,6 @@ export default () => dispatch => {
   axios
     .get('/contacts/')
     .then(res => {
-      console.log(`res.data`, res.data)
-
       dispatch({
         type: GET_CONTACTS_SUCCESS,
         payload: res.data,

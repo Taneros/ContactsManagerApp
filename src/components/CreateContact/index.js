@@ -29,8 +29,6 @@ const CreateContactComponent = ({
     setForm({ ...form, isFavorite: !form.isFavorite })
   }
 
-  console.log(`form`, form)
-
   return (
     <View style={styles.container}>
       <Container>

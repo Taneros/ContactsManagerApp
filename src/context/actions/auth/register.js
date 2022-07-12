@@ -34,10 +34,6 @@ export default ({
         last_name,
       })
       .then(res => {
-        console.log(
-          'REGISTER_SUCCESS! 🚀 ~ file: login.js ~ line 20 ~ res',
-          res.data
-        )
         dispatch({
           type: REGISTER_SUCCESS,
           payload: res.data,

@@ -28,13 +28,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'relative',
   },
+
+  contactDetails: {
+    padding: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
   contactName: {
     fontSize: 23,
     fontWeight: '600',
   },
-  contactDetails: {
-    padding: 20,
-  },
+
   divider: {
     height: 10,
     borderColor: colors.grey,

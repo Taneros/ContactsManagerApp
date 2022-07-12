@@ -52,7 +52,8 @@ const ImageContact = ({ source }) => {
 }
 
 const ContactDetailsComponent = ({ contact }) => {
-  const { contact_picture, first_name, last_name, phone_number } = contact
+  const { contact_picture, first_name, last_name, phone_number, is_favorite } =
+    contact
 
   const { navigate } = useNavigation()
 
@@ -64,6 +65,12 @@ const ContactDetailsComponent = ({ contact }) => {
           <Text style={styles.contactName}>
             {first_name} {last_name}
           </Text>
+
+          <Icon
+            type="ionicon"
+            name={is_favorite ? 'star' : 'star-outline'}
+            color={is_favorite ? 'orange' : 'darkgrey'}
+          />
         </View>
 
         <View style={styles.divider} />

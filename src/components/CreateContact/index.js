@@ -10,7 +10,7 @@ import colors from '../../assets/theme/colors'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import ImagePickerComponent from '../ImagePicker'
 
-const CreateContactComponent = ({
+export const CreateContactComponent = ({
   onChangeText,
   form,
   onSubmit,
@@ -23,8 +23,6 @@ const CreateContactComponent = ({
   onImageSelect,
   imageFile,
 }) => {
-  console.log(`error`, error)
-
   const togleFavorite = () => {
     setForm({ ...form, isFavorite: !form.isFavorite })
   }
@@ -92,4 +90,3 @@ const CreateContactComponent = ({
     </View>
   )
 }
-export default CreateContactComponent

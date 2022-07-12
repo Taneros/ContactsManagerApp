@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useContext, useRef, useState } from 'react'
-import CreateContactComponent from '../../components/CreateContact'
+import { CreateContactComponent } from '../../components/CreateContact'
 import { CONTACT_LIST } from '../../constants/routeNames'
 import createContact from '../../context/actions/contacts/createContact'
 import { GlobalContext } from '../../context/Provider'
@@ -30,13 +30,17 @@ const CreateContact = () => {
       uploadImage({ imageFile, form })(url => {
         setIsUploading(false)
         createContact({ ...form, contactPicture: url })(contactsDispatch)(
-          () => {
-            navigate(CONTACT_LIST)
+          id => {
+            navigate(CONTACT_LIST, { successCreate: true, id })
           }
         )
       })(err => {
         console.log('error uploading', err)
         setForm(prev => ({ ...prev, error: { uploadError: err } })) //TODO: show this error make a component
+      })
+    } else {
+      createContact(form)(contactsDispatch)(id => {
+        navigate(CONTACT_LIST, { successCreate: true, id })
       })
     }
   }

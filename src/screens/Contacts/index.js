@@ -1,21 +1,32 @@
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Text, View } from 'react-native'
-import Container from '../../components/common/Container'
+import React, {
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native'
 import { Icon } from '@rneui/themed'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import ContactsComponent from '../../components/Contacts'
-import { GlobalContext } from '../../context/Provider'
-import getContacts from '../../context/actions/contacts/getContacts'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { navigate } from '../../navigations/SideMenu/RootNavigator'
 import { CONTACT_DETAIL } from '../../constants/routeNames'
+import getContacts from '../../context/actions/contacts/getContacts'
+import { GlobalContext } from '../../context/Provider'
+import {
+  navigate,
+  navigationRef,
+} from '../../navigations/SideMenu/RootNavigator'
 
 const Contacts = () => {
   const { setOptions, toggleDrawer } = useNavigation()
   const [modalVisible, setModalVisible] = useState(false)
   const [sortBy, setSortBy] = useState('')
-  const contactsRef = useRef([])
+  const { params = {} } = useRoute()
 
   const {
     contactsDispatch,
@@ -24,20 +35,14 @@ const Contacts = () => {
     },
   } = useContext(GlobalContext)
 
+  console.log(`data`, data.length)
+
   useEffect(() => {
-    const prevList = contactsRef.current
-
-    contactsRef.current = data
-
-    const newList = contactsRef.current
-
-    if (newList.length - prevList.length === 1) {
-      const newContact = newList.find(
-        item => !prevList.map(i => i.id).includes(item.id)
-      )
+    if (params.successCreate) {
+      const newContact = data.find(item => item.id == params.id)
       navigate(CONTACT_DETAIL, { item: newContact })
     }
-  }, [data])
+  }, [params])
 
   useEffect(() => {
     getContacts()(contactsDispatch)
@@ -62,7 +67,7 @@ const Contacts = () => {
       const sortPref = await AsyncStorage.getItem('sortBy')
       sortPref && setSortBy(sortPref)
     } catch (error) {
-      console.log(`error`, error)
+      console.log(`error get settings`, error)
     }
   }
 

@@ -3,7 +3,7 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
 } from '../../../constants/actionTypes'
-import axiosInstance from '../../../helpers/axiosInstance'
+import axios from '../../../helpers/axiosInstance'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default ({ password, userName: username }) =>
@@ -11,8 +11,8 @@ export default ({ password, userName: username }) =>
     dispatch({
       type: LOGIN_LOADING,
     })
-
-    axiosInstance
+    //TODO: rewrite async await
+    axios
       .post('auth/login', {
         password,
         username,

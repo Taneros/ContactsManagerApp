@@ -1,14 +1,9 @@
-import React, { useContext } from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import HomeNavigator from './HomeNavigator'
+import React, { useContext } from 'react'
 import { HOME_NAVIGATOR } from '../constants/routeNames'
-import SideMenu from './SideMenu'
-import auth from '../context/reducers/auth'
 import { GlobalContext } from '../context/Provider'
-
-const getDrawerContent = navigation => {
-  return <SideMenu navigation={navigation} />
-}
+import HomeNavigator from './HomeNavigator'
+import SideMenu from './SideMenu'
 
 const DrawerNavigator = () => {
   const Drawer = createDrawerNavigator()

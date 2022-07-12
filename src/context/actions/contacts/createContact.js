@@ -5,7 +5,7 @@ import {
 } from '../../../constants/actionTypes'
 import axios from '../../../helpers/axiosInstance'
 
-export default form => dispatch => onSuccess => {
+export default form => dispatch => async onSuccess => {
   const requestPayload = {
     country_code: 'RU',
     first_name: form.firstName || '',
@@ -15,29 +15,28 @@ export default form => dispatch => onSuccess => {
     is_favorite: form.isFavorite || false,
   }
 
-  dispatch({
-    type: CREATE_CONTACT_LOADING,
-  })
-
-  axios
-    .post('/contacts/', requestPayload)
-    .then(res => {
-      dispatch({
-        type: CREATE_CONTACT_SUCCESS,
-        payload: res.data,
-      })
-
-      onSuccess()
+  try {
+    await dispatch({
+      type: CREATE_CONTACT_LOADING,
     })
-    .catch(err => {
-      console.log(`err`, err)
-      dispatch({
-        type: CREATE_CONTACT_FAIL,
-        payload: err.response
-          ? err.response.data
-          : {
-              error: 'Something went wrong when creating a contact! Try again.',
-            },
-      })
+
+    const res = await axios.post('/contacts/', requestPayload)
+
+    await dispatch({
+      type: CREATE_CONTACT_SUCCESS,
+      payload: res.data,
     })
+
+    onSuccess(res.data.id)
+  } catch (err) {
+    console.log(`err`, err)
+    dispatch({
+      type: CREATE_CONTACT_FAIL,
+      payload: err.response
+        ? err.response.data
+        : {
+            error: 'Something went wrong when creating a contact! Try again.',
+          },
+    })
+  }
 }

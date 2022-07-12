@@ -67,6 +67,7 @@ const CreateContactComponent = ({
             onChangeText({ name: 'phoneNumber', value })
           }}
           error={error?.phone_number?.[0]}
+          type="number"
         />
         <View style={styles.switchFavorite}>
           <Text>Make contact my favorite</Text>

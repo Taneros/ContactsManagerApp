@@ -1,5 +1,5 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Text, View } from 'react-native'
 import Container from '../../components/common/Container'
 import { Icon } from '@rneui/themed'
@@ -8,11 +8,14 @@ import ContactsComponent from '../../components/Contacts'
 import { GlobalContext } from '../../context/Provider'
 import getContacts from '../../context/actions/contacts/getContacts'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { navigate } from '../../navigations/SideMenu/RootNavigator'
+import { CONTACT_DETAIL } from '../../constants/routeNames'
 
 const Contacts = () => {
   const { setOptions, toggleDrawer } = useNavigation()
   const [modalVisible, setModalVisible] = useState(false)
   const [sortBy, setSortBy] = useState('')
+  const contactsRef = useRef([])
 
   const {
     contactsDispatch,
@@ -20,6 +23,21 @@ const Contacts = () => {
       getContacts: { data, loading },
     },
   } = useContext(GlobalContext)
+
+  useEffect(() => {
+    const prevList = contactsRef.current
+
+    contactsRef.current = data
+
+    const newList = contactsRef.current
+
+    if (newList.length - prevList.length === 1) {
+      const newContact = newList.find(
+        item => !prevList.map(i => i.id).includes(item.id)
+      )
+      navigate(CONTACT_DETAIL, { item: newContact })
+    }
+  }, [data])
 
   useEffect(() => {
     getContacts()(contactsDispatch)

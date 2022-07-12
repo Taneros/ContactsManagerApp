@@ -1,25 +1,19 @@
-import React, { Fragment, useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { Icon } from '@rneui/themed'
+import React, { useState } from 'react'
 import {
-  View,
-  Text,
-  FlatList,
+  ActivityIndicator,
   Image,
   ScrollView,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native'
-import { ActivityIndicator } from 'react-native'
-import AppModal from '../common/AppModal'
-import Message from '../common/Message'
 import colors from '../../assets/theme/colors'
-import { Icon, SocialIcon } from '@rneui/themed'
-import styles from './style'
-import { CONTACT_DETAIL, CREATE_CONTACT } from '../../constants/routeNames'
-import { useNavigation } from '@react-navigation/native'
-import { navigate } from '../../navigations/SideMenu/RootNavigator'
-import Container from '../common/Container'
-
+import { CREATE_CONTACT } from '../../constants/routeNames'
 import CustomButton from '../common/CustomButton'
 import ImagePicker from '../ImagePicker'
+import styles from './style'
 
 const ImageContact = ({ source }) => {
   const [loading, setLoading] = useState(false)

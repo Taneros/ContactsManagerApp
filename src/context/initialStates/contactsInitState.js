@@ -14,4 +14,9 @@ export default {
     error: null,
     loading: false,
   },
+  editContact: {
+    data: [{}],
+    error: null,
+    loading: false,
+  },
 }

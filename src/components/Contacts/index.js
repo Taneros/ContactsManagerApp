@@ -89,7 +89,12 @@ const ContactsComponent = ({
 
   return (
     <>
-      <View style={{ backgroundColor: colors.white }}>
+      <View
+        style={{
+          backgroundColor: colors.white,
+          height: '100%',
+          width: '100%',
+        }}>
         {/* <AppModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}

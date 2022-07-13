@@ -49,6 +49,7 @@ export const CreateContactComponent = ({
             onChangeText({ name: 'firstName', value })
           }}
           error={error?.first_name?.[0]}
+          value={form.firstName || ''}
         />
         <Input
           label="Last name"
@@ -57,6 +58,7 @@ export const CreateContactComponent = ({
             onChangeText({ name: 'lastName', value })
           }}
           error={error?.last_name?.[0]}
+          value={form.lastName || ''}
         />
         <Input
           label="Phone number"
@@ -66,6 +68,7 @@ export const CreateContactComponent = ({
           }}
           error={error?.phone_number?.[0]}
           type="number"
+          value={form.phoneNumber || ''}
         />
         <View style={styles.switchFavorite}>
           <Text>Make contact my favorite</Text>

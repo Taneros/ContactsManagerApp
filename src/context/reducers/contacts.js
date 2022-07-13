@@ -5,6 +5,9 @@ import {
   DELETE_CONTACT_FAIL,
   DELETE_CONTACT_LOADING,
   DELETE_CONTACT_SUCCESS,
+  EDIT_CONTACT_FAIL,
+  EDIT_CONTACT_LOADING,
+  EDIT_CONTACT_SUCCESS,
   GET_CONTACTS_FAIL,
   GET_CONTACTS_LOADING,
   GET_CONTACTS_SUCCESS,
@@ -12,6 +15,46 @@ import {
 
 export default contacts = (state, { type, payload }) => {
   switch (type) {
+    case EDIT_CONTACT_LOADING:
+      return {
+        ...state,
+        editContact: {
+          ...state.editContact,
+          loading: true,
+          error: null,
+        },
+      }
+
+    case EDIT_CONTACT_SUCCESS:
+      return {
+        ...state,
+        editContact: {
+          ...state.editContact,
+          loading: false,
+          error: null,
+        },
+        getContacts: {
+          ...state.getContacts,
+          loading: false,
+          data: state.getContacts.data.map(contact => {
+            if (contact.id === payload.id) return payload
+            return contact
+          }),
+          error: null,
+        },
+      }
+
+    case EDIT_CONTACT_FAIL:
+      return {
+        ...state,
+        editContact: {
+          ...state.editContact,
+          loading: false,
+          error: payload,
+        },
+      }
+
+    //
     case DELETE_CONTACT_LOADING:
       return {
         ...state,

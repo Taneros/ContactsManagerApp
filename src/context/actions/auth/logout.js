@@ -5,7 +5,7 @@ export default () => async dispatch => {
   try {
     await AsyncStorage.removeItem('user')
     await AsyncStorage.removeItem('token')
-    dispatch({
+    await dispatch({
       type: LOGOUT,
     })
   } catch (error) {

@@ -21,20 +21,20 @@ axiosInstance.interceptors.request.use(
     return config
   },
   error => {
-    return new Promise.reject(error)
+    return Promise.reject(error)
   }
 )
 
 axiosInstance.interceptors.response.use(
-  response => new Promise.resolve(response),
+  response => Promise.resolve(response),
   error => {
     if (!error.message) {
-      new Promise.reject(error)
+      Promise.reject(error)
     }
     if (error.response.status === 403) {
       navigate(LOGOUT, { tokenExpired: true })
     } else {
-      new Promise.reject(error)
+      Promise.reject(error)
     }
   }
 )

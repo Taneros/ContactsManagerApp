@@ -11,8 +11,6 @@ import {
 } from '../../constants/actionTypes'
 
 export default contacts = (state, { type, payload }) => {
-  console.log(`type payload`, type, payload)
-
   switch (type) {
     case DELETE_CONTACT_LOADING:
       return {
@@ -25,7 +23,6 @@ export default contacts = (state, { type, payload }) => {
       }
 
     case DELETE_CONTACT_SUCCESS:
-      console.log(`success delete!!!`)
       return {
         ...state,
         deleteContact: {

@@ -1,10 +1,3 @@
-import React, {
-  useContext,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   useFocusEffect,
@@ -12,15 +5,13 @@ import {
   useRoute,
 } from '@react-navigation/native'
 import { Icon } from '@rneui/themed'
+import React, { useContext, useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import ContactsComponent from '../../components/Contacts'
 import { CONTACT_DETAIL } from '../../constants/routeNames'
 import getContacts from '../../context/actions/contacts/getContacts'
 import { GlobalContext } from '../../context/Provider'
-import {
-  navigate,
-  navigationRef,
-} from '../../navigations/SideMenu/RootNavigator'
+import { navigate } from '../../navigations/SideMenu/RootNavigator'
 
 const Contacts = () => {
   const { setOptions, toggleDrawer } = useNavigation()
@@ -34,8 +25,6 @@ const Contacts = () => {
       getContacts: { data, loading },
     },
   } = useContext(GlobalContext)
-
-  console.log(`data`, data.length)
 
   useEffect(() => {
     if (params.successCreate) {

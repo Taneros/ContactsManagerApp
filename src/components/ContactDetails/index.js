@@ -31,6 +31,8 @@ const ImageContact = ({ source }) => {
     setLoading(false)
   }
 
+  console.log(`err loading`, error, loading)
+
   return (
     <View style={styles.imageContainer}>
       {loading && (
@@ -39,13 +41,7 @@ const ImageContact = ({ source }) => {
         </View>
       )}
       {!loading && !error && (
-        <Image
-          onLoadStart={() => {}}
-          onLoadEnd={() => {}}
-          onError={() => {}}
-          style={styles.contactImage}
-          source={{ uri: source }}
-        />
+        <Image style={styles.contactImage} source={{ uri: source }} />
       )}
     </View>
   )
@@ -61,6 +57,13 @@ const ContactDetailsComponent = ({ contact }) => {
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
         {contact_picture && <ImageContact source={contact_picture} />}
+        {!contact_picture && (
+          <Image
+            source={require('../../assets/images/avatar_default_head_person.png')}
+            style={{ alignSelf: 'center' }}
+          />
+        )}
+
         <View style={styles.contactDetails}>
           <Text style={styles.contactName}>
             {first_name} {last_name}
